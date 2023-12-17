@@ -45,6 +45,8 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
     game.setGameOverMessage(false, "the zombie ate your brainz")
     game.gameOver(false)
 })
+let mySprite2: Sprite = null
+let flag_zombie: Sprite = null
 let puff: Sprite = null
 let puff_shroom: Sprite = null
 let garg: Sprite = null
@@ -337,5 +339,32 @@ if (Math.percentChance(25)) {
         garg.follow(puff_shroom, 30)
         garg.data.num_hits = 0
 garg.data.max_hits = max_hits_garg
+if (Math.percentChance(50)) {
+            flag_zombie = sprites.create(assets.image`myImage`, SpriteKind.Player)
+            flag_zombie.follow(puff_shroom)
+            flag_zombie.setPosition(152, 57)
+            for (let index = 0; index < 4; index++) {
+                mySprite2 = sprites.create(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    `, SpriteKind.Player)
+            }
+        } else {
+        	
+        }
     }
 })
