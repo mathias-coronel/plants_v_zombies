@@ -45,12 +45,12 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
     game.setGameOverMessage(false, "the zombie ate your brainz")
     game.gameOver(false)
 })
-let mySprite2: Sprite = null
-let flag_zombie: Sprite = null
 let puff: Sprite = null
 let puff_shroom: Sprite = null
-let garg: Sprite = null
 let conehead_zombie: Sprite = null
+let garg: Sprite = null
+let flag_zombie: Sprite = null
+let mySprite2 = null
 game.splash("plants vs zombies")
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -198,8 +198,9 @@ puff_shroom.setStayInScreen(true)
 game.showLongText("the zombies are coming", DialogLayout.Bottom)
 info.startCountdown(60)
 let max_hits_cone = 3
+let max_hits_flag = 2
 let max_hits_garg = 6
-game.onUpdateInterval(1000, function () {
+game.onUpdateInterval(2000, function () {
     conehead_zombie = sprites.create(img`
         ..........................
         ..........................
@@ -339,32 +340,12 @@ if (Math.percentChance(25)) {
         garg.follow(puff_shroom, 30)
         garg.data.num_hits = 0
 garg.data.max_hits = max_hits_garg
-if (Math.percentChance(50)) {
-            flag_zombie = sprites.create(assets.image`myImage`, SpriteKind.Player)
-            flag_zombie.follow(puff_shroom)
-            flag_zombie.setPosition(152, 57)
-            for (let index = 0; index < 4; index++) {
-                mySprite2 = sprites.create(img`
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    `, SpriteKind.Player)
-            }
-        } else {
-        	
-        }
+    }
+    if (Math.percentChance(50)) {
+        flag_zombie = sprites.create(assets.image`myImage`, SpriteKind.Enemy)
+        flag_zombie.follow(puff_shroom, 35)
+        flag_zombie.setPosition(152, 57)
+        flag_zombie.data.num_hits = 0
+flag_zombie.data.max_hits = max_hits_flag
     }
 })
