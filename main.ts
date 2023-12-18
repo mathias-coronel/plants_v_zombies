@@ -2,24 +2,16 @@ namespace SpriteKind {
     export const Shilld = SpriteKind.create()
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . e e e e . . . . . . 
-        . . . . e e e e e e e e . . . . 
-        . . . e e e e e e e e e . . . . 
-        . . . e e e f e e f e e . . . . 
-        . . . e e e e e e e e e . . . . 
-        . . . e e e f e e f e e e . . . 
-        . . . . e e e f f e e e . . . . 
-        . . . . e e e e e e e . . . . . 
-        . . . . . . . e e . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Shilld)
+    mySprite.setPosition(randint(0, 160), randint(0, 120))
+    mySprite = sprites.create(assets.image`myImage0`, SpriteKind.Shilld)
+    mySprite.follow(conehead_zombie)
+    if (Math.percentChance(25)) {
+        mySprite.setImage(assets.image`myImage1`)
+        mySprite.follow(conehead_zombie)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    } else {
+    	
+    }
 })
 // This is the code for shooting puffs
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -62,6 +54,9 @@ info.onCountdownEnd(function () {
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
     game.setGameOverPlayable(true, music.melodyPlayable(music.powerUp), true)
+})
+sprites.onOverlap(SpriteKind.Shilld, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(conehead_zombie)
 })
 // This is the code block for game over
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
