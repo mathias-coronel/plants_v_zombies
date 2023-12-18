@@ -1,3 +1,26 @@
+namespace SpriteKind {
+    export const Shilld = SpriteKind.create()
+}
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . e e e e . . . . . . 
+        . . . . e e e e e e e e . . . . 
+        . . . e e e e e e e e e . . . . 
+        . . . e e e f e e f e e . . . . 
+        . . . e e e e e e e e e . . . . 
+        . . . e e e f e e f e e e . . . 
+        . . . . e e e f f e e e . . . . 
+        . . . . e e e e e e e . . . . . 
+        . . . . . . . e e . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Shilld)
+})
 // This is the code for shooting puffs
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     puff = sprites.create(img`
@@ -50,6 +73,7 @@ let x2 = 0
 let y = 0
 let x = 0
 let puff: Sprite = null
+let mySprite: Sprite = null
 let puff_shroom: Sprite = null
 let screendoor_zombie: Sprite = null
 let conehead_zombie: Sprite = null
