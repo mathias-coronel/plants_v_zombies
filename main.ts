@@ -2,15 +2,15 @@ namespace SpriteKind {
     export const Shilld = SpriteKind.create()
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.setPosition(randint(0, 160), randint(0, 120))
     mySprite = sprites.create(assets.image`myImage0`, SpriteKind.Shilld)
     mySprite.follow(conehead_zombie)
     if (Math.percentChance(25)) {
         mySprite.setImage(assets.image`myImage1`)
         mySprite.follow(conehead_zombie)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        sprites.destroy(mySprite)
     } else {
-    	
+        sprites.destroy(mySprite)
     }
 })
 // This is the code for shooting puffs
